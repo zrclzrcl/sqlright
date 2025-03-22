@@ -91,7 +91,7 @@ FROM sqlite3_build AS sqlright_build
 
 USER root
 WORKDIR /home/sqlite/src
-COPY src /home/sqlite/src
+COPY docker/sqlright/SQLite/docker/src /home/sqlite/src
 RUN chown -R sqlite:sqlite /home/sqlite/src
 
 USER sqlite
@@ -106,7 +106,10 @@ RUN mkdir -p fuzzing
 
 USER root
 WORKDIR /home/sqlite/fuzzing
-COPY fuzz_root /home/sqlite/fuzzing/fuzz_root
+COPY docker/sqlright/SQLite/docker/fuzz_root /home/sqlite/fuzzing/fuzz_root
+RUN chown -R sqlite:sqlite /home/sqlite/fuzzing/
+RUN rm -rf /home/sqlite/fuzzing/fuzz_root/inputs
+ADD docker/set_seed/ /home/sqlite/fuzzing/fuzz_root/inputs/
 RUN chown -R sqlite:sqlite /home/sqlite/fuzzing/
 
 USER sqlite
@@ -115,7 +118,7 @@ RUN mkdir -p Bug_Analysis
 
 # Setup the SQLite bisecting environment
 USER root
-COPY bisecting /home/sqlite/bisecting
+COPY docker/sqlright/SQLite/docker/bisecting /home/sqlite/bisecting
 RUN chown -R sqlite:sqlite /home/sqlite/bisecting
 
 # Setup the SQLite bisecting cached binaries. 
@@ -133,7 +136,7 @@ RUN mkdir -p bld
 # At last, setup the Docker helper scripts
 USER root
 WORKDIR /home/sqlite
-COPY scripts /home/sqlite/scripts
+COPY docker/sqlright/SQLite/docker/scripts /home/sqlite/scripts
 RUN chown -R sqlite:sqlite /home/sqlite/scripts
 
 # Entry workdir.

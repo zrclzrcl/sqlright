@@ -17,4 +17,4 @@ fi
 #sudo docker build --rm=false -f ./Dockerfile -t sqlright_sqlite .
 
 ## Release code. Remove all intermediate steps to save hard drive space.
-sudo docker build --rm=true -f ./Dockerfile -t sqlright_sqlite .
+#sudo docker build --rm=true -f ./Dockerfile -t sqlright_sqlite .

@@ -44,7 +44,7 @@ if [ "$1" == "SQLRight" ]; then
         -v $(pwd)/$resoutdir:/home/sqlite/fuzzing/fuzz_root/outputs \
         -v $(pwd)/$bugoutdir:/home/sqlite/fuzzing/Bug_Analysis \
         --name $resoutdir \
-        sqlright_sqlite /bin/bash /home/sqlite/scripts/run_sqlright_sqlite_fuzzing_helper.sh ${@:2}
+        sqlite_sqlright /bin/bash /home/sqlite/scripts/run_sqlright_sqlite_fuzzing_helper.sh ${@:2}
     
 else
     echo "Wrong arguments: $@"
