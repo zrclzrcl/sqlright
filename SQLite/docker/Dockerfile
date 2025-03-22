@@ -129,7 +129,7 @@ RUN chown -R sqlite:sqlite /home/sqlite/bisecting
 # Also, setup the bisecting sqlite folder. 
 USER sqlite
 WORKDIR /home/sqlite
-RUN git clone https://github.com/sqlite/sqlite.git ./sqlite_bisecting_binary
+RUN git clone https://github.com/sqlite/sqlite.git ./sqlite_bisecting_binary && cd ./sqlite_bisecting_binary && git checkout version-3.30.0
 WORKDIR /home/sqlite/sqlite_bisecting_binary
 RUN mkdir -p bld
 
